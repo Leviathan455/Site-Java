@@ -1,0 +1,15 @@
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+  <display-name>precoPerifericos</display-name>
+
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://jakarta.ee/jsp/jstl/core</taglib-uri>
+      <taglib-location>/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-2.0.0.jar</taglib-location>
+    </taglib>
+  </jsp-config>
+</web-app>

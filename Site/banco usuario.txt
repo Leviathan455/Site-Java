@@ -1,0 +1,61 @@
+CREATE TABLE usuario (
+    id_user serial PRIMARY KEY,
+    nome varchar(50) NOT NULL,
+    email varchar(50) NOT NULL,
+    senha varchar(300) NOT NULL,
+    status boolean NOT NULL,
+);
+
+
+CREATE TABLE Periferico (
+    idperiferico serial primary key,
+    nome VARCHAR(200) not null,
+    descricao VARCHAR(2000) not null,
+    imagem BYTEA,
+    marca VARCHAR(100),
+    idcategoria INT NOT NULL,
+    CONSTRAINT fk_categoria FOREIGN KEY (idcategoria) REFERENCES categoria (idcategoria)
+);
+
+CREATE TABLE precoloja (
+    id serial primary key,
+    fkidperiferico int not null,
+    preco numeric(15, 2) not null,
+    link varchar(400),
+    loja varchar(150) not null,
+    CONSTRAINT fk_periferico FOREIGN KEY (fkidperiferico) REFERENCES Periferico (idperiferico) ON DELETE CASCADE
+);
+CREATE TABLE categoria (
+    idcategoria SERIAL PRIMARY KEY,
+    nome VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE favorito (
+    id_usuario INT NOT NULL,
+    id_periferico INT NOT NULL,
+    PRIMARY KEY (id_usuario, id_periferico),
+    CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_user) ON DELETE CASCADE,
+    CONSTRAINT fk_periferico FOREIGN KEY (id_periferico) REFERENCES Periferico (idperiferico) ON DELETE CASCADE
+);
+
+
+----------------------------------------------------------------------------------------------------------------
+
+-- Inserção de usuários (2 ADMs e 2 Usuários Comuns)
+INSERT INTO usuario (nome, email, senha, status) VALUES
+('Admin1', 'admin1@example.com', 'senha1', TRUE),   -- Administrador
+('Admin2', 'admin2@example.com', 'senha2', TRUE),   -- Administrador
+('User1', 'user1@example.com', 'senha3', FALSE),    -- Usuário Comum
+('User2', 'user2@example.com', 'senha4', FALSE);    -- Usuário Comum
+
+
+-- Inserção de categorias
+INSERT INTO categoria (nome) VALUES
+('Teclados'),
+('Mouses'),
+('Monitores'),
+('Headsets'),
+('Impressoras'),
+('Webcams'),
+('Alto-falantes'),
+('Microfones');
